@@ -6,8 +6,8 @@ var CheckboxGroup = Check.CheckboxGroup;
 var CheckboxComp = React.createClass({
   getInitialState: function() {
     return {
-      fruits: this.props.values,
-      newfruits: this.props.values
+      options: this.props.values,
+      selectedOptions: this.props.values
     };
   },
 
@@ -17,15 +17,18 @@ var CheckboxComp = React.createClass({
   render: function() {
     // the checkboxes can be arbitrarily deep. They will always be fetched and
     // attached the `name` attribute correctly. `value` is optional
-    var col1 = this.state.fruits.filter(function(fruit, i){ if( !(i % 2) ) return fruit;})
-    var col2 = this.state.fruits.filter(function(fruit, i){ if( i % 2 ) return fruit;})
+    var col1 = this.state.options.filter(function(fruit, i){ if( !(i % 2) ) return fruit;})
+    var col2 = this.state.options.filter(function(fruit, i){ if( i % 2 ) return fruit;})
     // console.log(col1, col2);
     return (
     <div className="row-fluid clearfix checkboxes">
+      <div className="row-fluid filter-title">
+              {this.props.title}
+      </div>
       <CheckboxGroup
-        name="fruits"
-        value={this.state.newfruits}
-        onChange={this.fruitsChanged}>
+        name="options"
+        value={this.state.selectedOptions}
+        onChange={this.optionsChanged}>
         <div className="col-md-6">
         {col1.map(function (fruit, i) {
         	return (
@@ -55,10 +58,10 @@ var CheckboxComp = React.createClass({
     </div>	
     );
   },
-  fruitsChanged: function(newFruits) {
-  	console.log(newFruits);
+  optionsChanged: function(newOptions) {
+  	console.log(newOptions);
     this.setState({
-      newfruits: newFruits
+      selectedOptions: newOptions
     });
   }
 });

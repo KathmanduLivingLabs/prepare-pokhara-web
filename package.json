@@ -1,7 +1,7 @@
 {
-  "name": "react-data-explorer",
-  "version": "1.0.1",
-  "description": "My own attempt  at integrating d3 with react",
+  "name": "prepare-pokhara-web",
+  "version": "1.0.2",
+  "description": "Visualization app for the Pokhara secondary cities project",
   "main": "index.js",
   "scripts": {
     "production": "webpack -p",
@@ -25,11 +25,12 @@
     "axios": "^0.15.3",
     "c3": "^0.4.11",
     "d3": "^3.5.17",
-    "leaflet": "^1.0.2",
+    "leaflet": "*",
     "lodash": "^4.17.4",
-    "react": "^15.4.2",
+    "react": "*",
     "react-checkbox-group": "^3.0.1",
-    "react-dom": "^15.4.2",
+    "react-dom": "*",
+    "react-dropdown": "^1.2.0",
     "react-leaflet": "^1.1.0",
     "react-rangeslider": "^1.0.9",
     "react-router": "^2.0.0-rc5",
@@ -44,17 +45,6 @@
   },
   "homepage": "https://github.com/arkoblog/react-data-explorer#readme",
   "keywords": [
-    "A",
-    "simple",
-    "tool",
-    "that",
-    "allows",
-    "you",
-    "to",
-    "explore",
-    "csv",
-    "data",
-    "in",
-    "React"
+    "scondary cities", "citizen centered data"
   ]
 }

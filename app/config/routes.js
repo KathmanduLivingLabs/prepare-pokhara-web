@@ -6,10 +6,12 @@ var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 var hashHistory = ReactRouter.hashHistory;
 
-var Home = require('../components/Home')
-var Banks = require('../components/Banks')
-var Schools = require('../components/Schools')
-var Hospitals = require('../components/Hospitals')
+var Home = require('../components/Home');
+var Banks = require('../components/Banks');
+var Schools = require('../components/Schools');
+var Hospitals = require('../components/Hospitals');
+
+console.log("Hi")
 
 var routes = (
 	<Router history={hashHistory}>

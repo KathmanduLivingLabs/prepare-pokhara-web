@@ -23,6 +23,9 @@ var Slider = React.createClass({
     render: function() {
         return (
         	<div className="clearfix">
+                        <div className="row-fluid filter-title">
+                            {this.props.title}
+                        </div>
 				<label className="pull-right">{this.state.max}</label>
         		<label className="pull-left">{this.state.min}</label>
 				<input onChange = {this.change} value = {this.state.value} type="range" min={this.state.min} max={this.state.max} step={this.state.step} /> 
