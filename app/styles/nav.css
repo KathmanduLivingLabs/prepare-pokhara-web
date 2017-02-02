@@ -1,0 +1,83 @@
+/* Navigation */
+#menu {
+	padding: 0px;
+	transition: all 0.8s;
+}
+
+/*.navbar {height:8vh !important;}*/
+
+#menu.navbar-default {
+	background-color:#ffffff;
+	border-bottom: 3px solid #10A0E6;
+}
+
+#menu a.navbar-brand {
+	text-transform:uppercase;
+	font-size: 4vmin;
+	font-weight: bold;
+	font-family: 'Signika', sans-serif;
+	color: #10A0E6;
+}
+
+#menu a.navbar-brand > span {
+	color: #23769E;
+}
+
+#menu.navbar-default .navbar-nav > li > a {
+	text-transform: uppercase;
+	color: #10A0E6;
+	font-size: 2.5vmin	;
+	font-weight: bold;
+	/*letter-spacing: 1px;*/
+	padding: 8px 2px;
+	border-radius: 0;
+	margin: 9px 20px 0 20px;
+}
+
+#menu.navbar-default .navbar-nav > li > a:hover,
+#menu.navbar-default .navbar-nav > li > a:focus {
+	color: #23769E;
+	background-color: transparent;
+}
+/*.on {
+	background-color: #333 !important;
+	padding: 0 !important;
+	padding: 15px 0 !important;
+}*/
+
+/*Dropdown styling*/
+
+.navbar .dropdown-menu > li > a {
+	text-transform: uppercase;
+	color: #10A0E6;
+	font-size: 2.5vmin	;
+	font-weight: bold;
+	/*letter-spacing: 1px;*/
+	padding: 10px 8px 10px;
+	/*padding-top: 10px;*/
+	border-radius: 0;
+	margin: 9px 0px 0 0px;
+}
+
+.navbar .dropdown-menu > li > a:hover,
+.navbar .dropdown-menu>li>a:focus {
+  background-color: #10A0E6;
+  color: #fff;
+}
+
+/*End Dropdown Styling*/
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+	color: #23769E !important;
+	background-color: transparent;
+}
+.navbar-toggle {
+	border-radius: 0;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+	background-color: #fff;
+	border-color: #fff;
+}
+.navbar-default .navbar-toggle:hover>.icon-bar {
+	background-color: #6aaf08;
+}
