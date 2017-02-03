@@ -26,8 +26,8 @@ var Hospitals = React.createClass({
 					<div className="col-md-4" id="hospitals-sidebar">
 						<SidebarSection title = "filters">
 							<Checkbox title= "facilities" values = {["ICU", "NICU", "Ventilator", "Emergency", "Ambulance", "X-Ray", "Operation Theater"]}/>
-							<Slider title= "bed capacity" value="7" min="0" max="12" step = "0.5" label="Select number of beds:"/>
-							<Dropdown title= "ward number" options = {['All Wards', 'Ward No 1', 'Ward No 2', 'Ward No 3', 'Ward No 4']}/>
+							<Slider title= "bed capacity" outputlabel="Greater than" value="7" min="0" max="300" step = "1" label="Select number of beds:"/>
+							<Dropdown title= "ward number"  options = {['All Wards', 'Ward No 1', 'Ward No 2', 'Ward No 3', 'Ward No 4']}/>
 						</SidebarSection>
 
 						<SidebarSection title="insights">

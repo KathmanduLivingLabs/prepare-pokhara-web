@@ -14,9 +14,9 @@ var Drop = React.createClass({
         };
     },
  	handleChange: function(e) {
-        var selectedVar = (this.state.options[e.target.value]);
-        // console.log(selectedVar)
-        this.setState({value: selectedVar});  
+        // var selectedVar = (this.state.options[e.target.value]);
+        console.log("Selected Ward:", this.state.options[e.target.value])
+        this.setState({value: e.target.value});  
 	},
     render: function() {
         return (

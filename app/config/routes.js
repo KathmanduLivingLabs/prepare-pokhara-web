@@ -11,8 +11,6 @@ var Banks = require('../components/Banks');
 var Schools = require('../components/Schools');
 var Hospitals = require('../components/Hospitals');
 
-console.log("Hi")
-
 var routes = (
 	<Router history={hashHistory}>
 		<Route path='/' component = {Home}>

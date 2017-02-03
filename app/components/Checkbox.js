@@ -59,7 +59,7 @@ var CheckboxComp = React.createClass({
     );
   },
   optionsChanged: function(newOptions) {
-  	console.log(newOptions);
+  	console.log("Selected features:", newOptions);
     this.setState({
       selectedOptions: newOptions
     });
