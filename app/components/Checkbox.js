@@ -7,7 +7,7 @@ var CheckboxComp = React.createClass({
   getInitialState: function() {
     return {
       options: this.props.values,
-      selectedOptions: this.props.values
+      selectedOptions: []
     };
   },
 
@@ -59,10 +59,15 @@ var CheckboxComp = React.createClass({
     );
   },
   optionsChanged: function(newOptions) {
-  	console.log("Selected features:", newOptions);
+  	// console.log("Selected features:", newOptions);
+    var filters = {}
+    newOptions.map(function(option){
+      filters[option]="yes"
+    });
+    // console.log("Selectedfilters:",filters)
     this.setState({
       selectedOptions: newOptions
-    });
+    }, this.props.handler(filters));
   }
 });
 
