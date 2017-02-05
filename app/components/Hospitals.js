@@ -6,6 +6,8 @@ var Dropdown = require('./Dropdown');
 var SidebarSection = require('./SidebarSection');
 var HH = require('./HospitalHelper');
 var Puker = require ('../utils/Puker')
+// var LMap = require('./Map')
+var LeafletMap = require('./Maps')
 
 require("../styles/contents.css")
 
@@ -115,7 +117,9 @@ var Hospitals = React.createClass({
 			<div className="header ">
 				<div className="row-fluid">
 					<div className="col-md-8 no-padding">
-						
+						<div id="map-container" style={{height:"100px"}}>
+								<LeafletMap data={this.state.insightValues.geojson}/>
+						</div>
 						<h2>My Wards</h2>
 						<Puker data = {this.state.filterParameters} />
 						<Puker data = {this.state.insightValues.stats} />
