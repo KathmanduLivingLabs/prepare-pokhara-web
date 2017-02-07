@@ -19,46 +19,30 @@ var Hospitals = React.createClass({
 				filterParameters: {"type": "hospital","ward": "*", "filters": {}, "variables":{"Bed Capacity":"0"}}
 			}		
 	},
-	fetchValues: function(params) {
-		HH.fetchInsights(params).then(
-				function(response) {
-					console.log("I got a respone inside updateInsights",response);
-					this.setState({
-						insightValues: {stats: response.data.stats, geojson:response.data.geojson}
-					})
-				}.bind(this)
-		)
+	updateValues: function(params) {
+		HH.getInsights(params).then(function(response){
+			this.setState({
+				filterValues: {wards:this.state.filterValues.wards, maxBedCapacity:response.maxBedCapacity},
+				insightValues: {stats: response.stats, geojson:response.geojson},
+				isLoading:false
+			})
+		}.bind(this));
+
 	},
 	componentWillMount: function () {
-		HH.fetchDropDowns().then(
-			function(response){
-				console.log("I got a respone inside fetchDD",response);
-				var wards = [{
-					"name": "All Wards",
-					"number": "0",
-					"osmID":"*"
-				}];
+		HH.getWards().then(function(arr){
+			this.setState({
+				filterValues: {wards:arr, maxBedCapacity:this.state.filterValues.maxBedCapacity}
+			})
+		}.bind(this));
 
-				response.data.metrics.wards.map(function(ward){
-					wards.push(ward)
-				});
-
-				this.setState({
-					filterValues: {wards:wards, maxBedCapacity:this.state.filterValues.maxBedCapacity}
-				})
-			}.bind(this)
-		);
-
-		HH.fetchInsights(this.state.filterParameters).then(
-				function(response) {
-					console.log("I got a respone inside fetchInsights",response);
-					this.setState({
-						filterValues: {wards:this.state.filterValues.wards, maxBedCapacity:response.data.initialMetrics.slider["Bed Capacity"]},
-						insightValues: {stats: response.data.stats, geojson:response.data.geojson},
-						isLoading:false
-					})
-				}.bind(this)
-		)
+		HH.getInsights(this.state.filterParameters).then(function(response){
+			this.setState({
+				filterValues: {wards:this.state.filterValues.wards, maxBedCapacity:response.maxBedCapacity},
+				insightValues: {stats: response.stats, geojson:response.geojson},
+				isLoading:false
+			})
+		}.bind(this));
 	},
 	handleCheckBoxChange : function(params) {
 		var newParameters = {
@@ -70,7 +54,7 @@ var Hospitals = React.createClass({
 
 		this.setState({
 			filterParameters: newParameters
-		}, this.fetchValues(newParameters))
+		}, this.updateValues(newParameters))
 	},
 	handleSliderChange : function(params) {
 		var newParameters = {
@@ -82,7 +66,7 @@ var Hospitals = React.createClass({
 
 		this.setState({
 			filterParameters: newParameters
-		}, this.fetchValues(newParameters))
+		}, this.updateValues(newParameters))
 	},
 	handleDropDownChange: function(params) {
 		var newParameters = {
@@ -94,9 +78,7 @@ var Hospitals = React.createClass({
 
 		this.setState({
 			filterParameters:  newParameters
-		}, this.fetchValues(newParameters))
-	},
-	componentDidMount: function() {
+		}, this.updateValues(newParameters))
 	},
 	render: function(){
 		if (this.state.isLoading===true) {

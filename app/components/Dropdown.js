@@ -15,8 +15,6 @@ var Drop = React.createClass({
         return option.number !=0 ? ("- Ward No. " + option.number) : ""
     },
  	handleChange: function(e) {
-        // var selectedVar = (this.state.options[e.target.value]);
-        // console.log("Selected Relation:", this.state.options[e.target.value].osmID)
         this.setState({
             value: e.target.value,
             selectedRelation: this.state.options[e.target.value].osmID
