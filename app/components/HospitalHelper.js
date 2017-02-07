@@ -18,7 +18,6 @@ var createInsightParams=function(features, bedcapacity, ward){
 }
 
 var fetchInsights = function(params) {
-	console.log("gotparams",params)
 	return axios({
 		method:'get',
 		url:'http://api-preparepokhara.herokuapp.com/api/v1/features',

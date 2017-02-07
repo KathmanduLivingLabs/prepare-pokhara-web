@@ -1,9 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom')
 var L = require('leaflet')
-// var RL = require ('react-leaflet');
 
-var position = [51.505, -0.09];
 
 var LeafletMap = React.createClass({
     rendermap: function() {
@@ -12,17 +10,17 @@ var LeafletMap = React.createClass({
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           }).addTo(map);
          
-
     },
+
     addMarkers:function(data) {
         markerLayer =new L.featureGroup;
         data.features.map(function(d){
-          console.log(d)
           var marker = new L.marker([d.geometry.coordinates[1], d.geometry.coordinates[0]]).addTo(markerLayer)
           .bindPopup('<strong>Name</strong><br>'+d.properties.tags.name)
         });
         markerLayer.addTo(this.map);
     },
+
     updateMarkers:function(data) {
         this.map.removeLayer(markerLayer)
         markerLayer = new L.featureGroup;
@@ -32,10 +30,12 @@ var LeafletMap = React.createClass({
         });
         markerLayer.addTo(this.map);
     },
+
     componentDidMount: function () {
         this.rendermap();
         this.addMarkers(this.props.data);
     },
+
     componentDidUpdate: function () {
         this.updateMarkers(this.props.data);
     },
@@ -46,7 +46,5 @@ var LeafletMap = React.createClass({
         )
     }
 })
-
-// ReactDOM.render(<LeafletMap/>, document.getElementById("map-container"))
 
 module.exports = LeafletMap

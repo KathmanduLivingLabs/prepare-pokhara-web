@@ -17,9 +17,8 @@ var CheckboxComp = React.createClass({
   render: function() {
     // the checkboxes can be arbitrarily deep. They will always be fetched and
     // attached the `name` attribute correctly. `value` is optional
-    var col1 = this.state.options.filter(function(fruit, i){ if( !(i % 2) ) return fruit;})
-    var col2 = this.state.options.filter(function(fruit, i){ if( i % 2 ) return fruit;})
-    // console.log(col1, col2);
+    var oddCols = this.state.options.filter(function(option, i){ if( !(i % 2) ) return option;})
+    var evenCols = this.state.options.filter(function(option, i){ if( i % 2 ) return option;})
     return (
     <div className="row-fluid clearfix checkboxes">
       <div className="row-fluid filter-title">
@@ -30,7 +29,7 @@ var CheckboxComp = React.createClass({
         value={this.state.selectedOptions}
         onChange={this.optionsChanged}>
         <div className="col-md-6">
-        {col1.map(function (fruit, i) {
+        {oddCols.map(function (fruit, i) {
         	return (
         			<div  key = {i} className="row-fluid">
         			<label >
@@ -43,7 +42,7 @@ var CheckboxComp = React.createClass({
 
 		<div className="col-md-6">
         	
-        {col2.map(function (fruit, i) {
+        {evenCols.map(function (fruit, i) {
         	return (
         			<div  key = {i} className="row-fluid">
         			<label >

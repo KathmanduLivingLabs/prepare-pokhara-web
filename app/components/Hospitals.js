@@ -6,7 +6,6 @@ var Dropdown = require('./Dropdown');
 var SidebarSection = require('./SidebarSection');
 var HH = require('./HospitalHelper');
 var Puker = require ('../utils/Puker')
-// var LMap = require('./Map')
 var LeafletMap = require('./Maps')
 
 require("../styles/contents.css")
@@ -21,12 +20,10 @@ var Hospitals = React.createClass({
 			}		
 	},
 	fetchValues: function(params) {
-		console.log("FilterParams",JSON.stringify(params))
 		HH.fetchInsights(params).then(
 				function(response) {
-					// console.log(response.data.stats)
+					console.log("I got a respone inside updateInsights",response);
 					this.setState({
-						// filterValues: {wards:this.state.filterValues.wards, maxBedCapacity:response.data.initialMetrics.slider["Bed Capacity"]},
 						insightValues: {stats: response.data.stats, geojson:response.data.geojson}
 					})
 				}.bind(this)
@@ -35,7 +32,7 @@ var Hospitals = React.createClass({
 	componentWillMount: function () {
 		HH.fetchDropDowns().then(
 			function(response){
-				// console.log(response.data)s
+				console.log("I got a respone inside fetchDD",response);
 				var wards = [{
 					"name": "All Wards",
 					"number": "0",
@@ -54,7 +51,7 @@ var Hospitals = React.createClass({
 
 		HH.fetchInsights(this.state.filterParameters).then(
 				function(response) {
-					// console.log(response.data.stats)
+					console.log("I got a respone inside fetchInsights",response);
 					this.setState({
 						filterValues: {wards:this.state.filterValues.wards, maxBedCapacity:response.data.initialMetrics.slider["Bed Capacity"]},
 						insightValues: {stats: response.data.stats, geojson:response.data.geojson},
@@ -64,7 +61,6 @@ var Hospitals = React.createClass({
 		)
 	},
 	handleCheckBoxChange : function(params) {
-		// console.log(params);
 		var newParameters = {
 				"type": this.state.filterParameters.type,
 				"ward": this.state.filterParameters.ward, 
@@ -121,14 +117,12 @@ var Hospitals = React.createClass({
 								<LeafletMap data={this.state.insightValues.geojson}/>
 						</div>
 						<h2>My Wards</h2>
-						<Puker data = {this.state.filterParameters} />
-						<Puker data = {this.state.insightValues.stats} />
 
 					</div>
 
 					<div className="col-md-4" id="hospitals-sidebar">
 						<SidebarSection title = "filters">
-							<Checkbox title= "facilities" values = {["ICU", "NICU", "Ventilator", "Emergency", "Ambulance", "X-Ray", "Operation Theater"]} handler={this.handleCheckBoxChange}/>
+							<Checkbox title= "facilities" values = {["ICU", "NICU", "Ventilator", "Emergency", "Ambulance", "Xray", "Operation Theatre"]} handler={this.handleCheckBoxChange}/>
 							<Slider title= "bed capacity" outputlabel="Greater than" value="0" min="0" max={this.state.filterValues.maxBedCapacity.toString()} step = "1" label="Select number of beds:" handler={this.handleSliderChange}/>
 							<Dropdown title= "ward number"  options={this.state.filterValues.wards} handler={this.handleDropDownChange}/>
 						</SidebarSection>

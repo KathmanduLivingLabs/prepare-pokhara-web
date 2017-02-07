@@ -70,7 +70,7 @@ ul, ol {
 	moz-padding: 0;
 }
 
-hr {
+/*hr {
 	height: 3px;
 	width: 70px;
 	text-align: center;
@@ -80,7 +80,7 @@ hr {
 	margin-bottom: 20px;
 	border: 0;
 }
-
+*/
 .section-title {
 	margin-bottom: 70px;
 }

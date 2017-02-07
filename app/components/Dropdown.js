@@ -23,7 +23,6 @@ var Drop = React.createClass({
         },this.props.handler(this.state.options[e.target.value].osmID));  
 	},
     componentWillMount: function (){
-        console.log(this.props.options)
     },
     render: function() {
         return (
