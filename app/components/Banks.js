@@ -9,7 +9,6 @@ var Banks = React.createClass({
 		}
 	},
 	componentWillMount: function () {
-		// console.log(this.props)
 	},
 	componentDidMount: function() {
 	},

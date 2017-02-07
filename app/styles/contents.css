@@ -10,7 +10,7 @@
 	padding-top: 5px;
 }
 
-#hospitals-sidebar span {
+#hospitals-sidebar .sidebar-title {
 	text-transform: uppercase;
 	color: #10A0E6;
 	font-size: 3.5vmin	;

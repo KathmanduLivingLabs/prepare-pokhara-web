@@ -10,51 +10,45 @@ var CheckboxComp = React.createClass({
       selectedOptions: []
     };
   },
-
-  componentDidMount: function() {
-  },
-
   render: function() {
-    // the checkboxes can be arbitrarily deep. They will always be fetched and
-    // attached the `name` attribute correctly. `value` is optional
     var oddCols = this.state.options.filter(function(option, i){ if( !(i % 2) ) return option;})
     var evenCols = this.state.options.filter(function(option, i){ if( i % 2 ) return option;})
     return (
-    <div className="row-fluid clearfix checkboxes">
-      <div className="row-fluid filter-title">
-              {this.props.title}
-      </div>
-      <CheckboxGroup
-        name="options"
-        value={this.state.selectedOptions}
-        onChange={this.optionsChanged}>
-        <div className="col-md-6">
-        {oddCols.map(function (fruit, i) {
-        	return (
-        			<div  key = {i} className="row-fluid">
-        			<label >
-        			<Checkbox value={fruit}/> {fruit}
-        			</label>
-        			</div>
-        		)
-        }.bind(this))}
+      <div className="row-fluid clearfix checkboxes">
+        <div className="row-fluid filter-title">
+                {this.props.title}
         </div>
+        <CheckboxGroup
+          name="options"
+          value={this.state.selectedOptions}
+          onChange={this.optionsChanged}>
+          <div className="col-md-6">
+          {oddCols.map(function (fruit, i) {
+          	return (
+          			<div  key = {i} className="row-fluid">
+          			<label >
+          			<Checkbox value={fruit}/> {fruit}
+          			</label>
+          			</div>
+          		)
+          }.bind(this))}
+          </div>
 
-		<div className="col-md-6">
-        	
-        {evenCols.map(function (fruit, i) {
-        	return (
-        			<div  key = {i} className="row-fluid">
-        			<label >
-        			<Checkbox value={fruit}/> {fruit}
-        			</label>
-        			</div>
-        		)
-        }.bind(this))}
-        </div>
+  		<div className="col-md-6">
+          	
+          {evenCols.map(function (fruit, i) {
+          	return (
+          			<div  key = {i} className="row-fluid">
+          			<label >
+          			<Checkbox value={fruit}/> {fruit}
+          			</label>
+          			</div>
+          		)
+          }.bind(this))}
+          </div>
 
-      </CheckboxGroup>
-    </div>	
+        </CheckboxGroup>
+      </div>	
     );
   },
   optionsChanged: function(newOptions) {

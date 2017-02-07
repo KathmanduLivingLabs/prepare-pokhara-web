@@ -1,11 +1,11 @@
 var React = require ('react');
 
-var SidebarSection = React.createClass({
+var SidebarPanel = React.createClass({
 	render: function(){
 		return (
 					<div className="row-fluid clearfix">
 						<div className="row-fluid section-title">
-								<span>{this.props.title}</span>
+								<span className="sidebar-title">{this.props.title}</span>
 						</div>
 						{this.props.children}
 					</div>
@@ -13,4 +13,4 @@ var SidebarSection = React.createClass({
 	}
 })
 
-module.exports = SidebarSection;
+module.exports = SidebarPanel;
