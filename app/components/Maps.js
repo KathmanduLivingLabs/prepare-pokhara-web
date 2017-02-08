@@ -16,13 +16,13 @@ var Popup = React.createClass({
 var LeafletMap = React.createClass({
     popup: function (d) {
         return ('<strong>Name: </strong>'+d.name
-                +'<br/><strong>ICU: </strong>'+(function(d){return d["facility:icu"] ? "yes":"no"}(d))
-                +'<br/><strong>Ventilator: </strong>'+(function(d){return d["facility:ventilator"] ? "yes":"no"}(d))
-                +'<br/><strong>Ambulance: </strong>'+(function(d){return d["emergency_service"] ? "yes":"no"}(d))
-                +'<br/><strong>Operation Theatre: </strong>'+(function(d){return d["facility:operating_theatre"] ? "yes":"no"}(d))
-                +'<br/><strong>NICU: </strong>'+(function(d){return d["facility:nicu"] ? "yes":"no"}(d))
-                +'<br/><strong>Operation Theatre: </strong>'+(function(d){return d["emergency"] ? "yes":"no"}(d))
-                +'<br/><strong>X-Ray: </strong>'+(function(d){return d["facility:x_ray"] ? "yes":"no"}(d))
+                +'<br/><strong>ICU: </strong>'+d["facility:icu"] 
+                +'<br/><strong>Ventilator: </strong>'+d["facility:ventilator"] 
+                +'<br/><strong>Ambulance: </strong>'+d["emergency_service"] 
+                +'<br/><strong>Operation Theatre: </strong>'+d["facility:operating_theatre"]
+                +'<br/><strong>NICU: </strong>'+d["facility:nicu"]
+                +'<br/><strong>Emergency: </strong>'+d["emergency"]
+                +'<br/><strong>X-Ray: </strong>'+d["facility:x-ray"]
                 +'<br/><strong>Bed Capacity: </strong>'+ d["capacity:beds"]
                 +'<br/><strong>Personnel Count: </strong>'+ d["personnel:count"]
                 )

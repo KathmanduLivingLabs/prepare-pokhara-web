@@ -104,14 +104,14 @@ var Hospitals = React.createClass({
 		return (
 			<div className="header ">
 				<div className="row-fluid">
-					<div className="col-md-9 no-padding">
+					<div className="col-md-8 col-xs-8 col-sm-8 no-padding ">
 						<div id="map-container" style={{height:"100px"}}>
 								<LeafletMap data={this.state.insightValues.geojson}/>
 						</div>
 
 					</div>
 
-					<div className="col-md-3" id="hospitals-sidebar">
+					<div className="col-md-4 col-xs-4  col-md-4 clearfix" id="hospitals-sidebar">
 						<SidebarPanel title = "filters">
 							<Toggle title= "facilities" values = {["ICU", "NICU", "Ventilator", "Emergency", "Ambulance", "Xray", "Operation Theatre"]} handler={this.onToggleGroupChange}/>
 							{/*<Checkbox title= "facilities" values = {["ICU", "NICU", "Ventilator", "Emergency", "Ambulance", "Xray", "Operation Theatre"]} handler={this.onCheckboxChange}/>*/}

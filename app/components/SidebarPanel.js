@@ -5,7 +5,7 @@ var SidebarPanel = React.createClass({
 		return (
 					<div className="row-fluid clearfix">
 						<div className="row-fluid section-title">
-								<span className="sidebar-title">{this.props.title}</span>
+							<span className="sidebar-title">{this.props.title}</span>
 						</div>
 						{this.props.children}
 					</div>
