@@ -14,11 +14,18 @@ var Popup = React.createClass({
 
 
 var LeafletMap = React.createClass({
-    popup: function (d) {
+    getInitialState: function() {
+        var maxWindowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)-55;
+        return {
+            height: maxWindowHeight
+        }
+    },
+
+    addPopup: function (d) {
         return ('<strong>Name: </strong>'+d.name
                 +'<br/><strong>ICU: </strong>'+d["facility:icu"] 
                 +'<br/><strong>Ventilator: </strong>'+d["facility:ventilator"] 
-                +'<br/><strong>Ambulance: </strong>'+d["emergency_service"] 
+                +'<br/><strong>Emergency Services: </strong>'+d["emergency_service"] 
                 +'<br/><strong>Operation Theatre: </strong>'+d["facility:operating_theatre"]
                 +'<br/><strong>NICU: </strong>'+d["facility:nicu"]
                 +'<br/><strong>Emergency: </strong>'+d["emergency"]
@@ -38,10 +45,8 @@ var LeafletMap = React.createClass({
     addMarkers:function(data) {
         markerLayer =new L.featureGroup;
         data.features.map(function(d){
-          // console.log("Hi",d);
           var marker = new L.marker([d.geometry.coordinates[1], d.geometry.coordinates[0]]).addTo(markerLayer)
-          .bindPopup(this.popup(d.properties.tags))
-          // .bindPopup('<strong>Name</strong><br>'+d.properties.tags.name)
+          .bindPopup(this.addPopup(d.properties.tags))
         }.bind(this));
         markerLayer.addTo(this.map);
     },
@@ -50,7 +55,6 @@ var LeafletMap = React.createClass({
         this.map.removeLayer(markerLayer)
         markerLayer = new L.featureGroup;
         data.features.map(function(d){
-          console.log("Hi",d);
           var marker = new L.marker([d.geometry.coordinates[1], d.geometry.coordinates[0]]).addTo(markerLayer)
           .bindPopup(this.popup(d.properties.tags))
           // .bindPopup('<strong>Name</strong><br>'+d.properties.tags.name)
@@ -58,9 +62,17 @@ var LeafletMap = React.createClass({
         markerLayer.addTo(this.map);
     },
 
+    updateDimensions: function() {
+        var maxWindowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)-55;
+        this.setState({
+            height: maxWindowHeight 
+        })
+    },
+
     componentDidMount: function () {
         this.rendermap();
         this.addMarkers(this.props.data);
+        window.addEventListener("resize", this.updateDimensions);
     },
 
     componentDidUpdate: function () {
@@ -68,8 +80,9 @@ var LeafletMap = React.createClass({
     },
     
     render: function() {
+
       return(
-          <div id="map" style={{height:"90vh"}}></div> 
+          <div id="map" style={{height:this.state.height}}></div> 
         )
     }
 })

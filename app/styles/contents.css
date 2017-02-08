@@ -9,7 +9,7 @@
 #hospitals-sidebar {
 	padding-top: 5px;
 	overflow-y:scroll;
-	height:90vh;
+	/*height:90vh;*/
 }
 
 #hospitals-sidebar .sidebar-title {

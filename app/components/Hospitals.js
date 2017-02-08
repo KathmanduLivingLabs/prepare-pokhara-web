@@ -13,7 +13,9 @@ require("../styles/contents.css")
 
 var Hospitals = React.createClass({
 	getInitialState: function() {
-			return {
+		    var maxWindowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - 55;
+      		return {
+				sidebarHeight: maxWindowHeight,
 				isLoading:true,
 				filterValues: {wards:[], maxBedCapacity:10000000},
 				insightValues: {stats:{}, geojson:{}},
@@ -35,6 +37,9 @@ var Hospitals = React.createClass({
 			})
 		}.bind(this));
 	},
+    componentDidMount: function() {
+		window.addEventListener("resize", this.updateDimensions);
+	},
 	onParameterChange: function(params) {
 		HH.getInsights(params).then(function(response){
 			this.setState({
@@ -46,18 +51,6 @@ var Hospitals = React.createClass({
 
 	},
 	onToggleGroupChange : function(params) {
-		var newParameters = {
-				"type": this.state.filterParameters.type,
-				"ward": this.state.filterParameters.ward, 
-				"filters": params, 
-				"variables":this.state.filterParameters.variables
-		}; 
-
-		this.setState({
-			filterParameters: newParameters
-		}, this.onParameterChange(newParameters))
-	},
-	onCheckboxChange : function(params) {
 		var newParameters = {
 				"type": this.state.filterParameters.type,
 				"ward": this.state.filterParameters.ward, 
@@ -93,6 +86,12 @@ var Hospitals = React.createClass({
 			filterParameters:  newParameters
 		}, this.onParameterChange(newParameters))
 	},
+    updateDimensions: function() {
+        var maxWindowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)-55;
+        this.setState({
+            sidebarHeight: maxWindowHeight 
+        })
+    },
 	render: function(){
 		if (this.state.isLoading===true) {
 			return (
@@ -111,7 +110,7 @@ var Hospitals = React.createClass({
 
 					</div>
 
-					<div className="col-md-4 col-xs-4  col-md-4 clearfix" id="hospitals-sidebar">
+					<div className="col-md-4 col-xs-4  col-md-4 clearfix" id="hospitals-sidebar" style={{height:this.state.sidebarHeight}}>
 						<SidebarPanel title = "filters">
 							<Toggle title= "facilities" values = {["ICU", "NICU", "Ventilator", "Emergency", "Ambulance", "Xray", "Operation Theatre"]} handler={this.onToggleGroupChange}/>
 							{/*<Checkbox title= "facilities" values = {["ICU", "NICU", "Ventilator", "Emergency", "Ambulance", "Xray", "Operation Theatre"]} handler={this.onCheckboxChange}/>*/}
