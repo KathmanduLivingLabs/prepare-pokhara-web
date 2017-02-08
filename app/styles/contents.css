@@ -8,6 +8,8 @@
 
 #hospitals-sidebar {
 	padding-top: 5px;
+	overflow-y:scroll;
+	height:93vh;
 }
 
 #hospitals-sidebar .sidebar-title {
