@@ -21,14 +21,16 @@ var Slider = React.createClass({
     },
     render: function() {
         return (
-        	<div className="clearfix">
+        	<div className="clearfix row-fluid">
+                <div className="col-md-12">
                         <div className="row-fluid filter-title">
                             {this.props.title}
                         </div>
-				<label className="pull-right">{this.state.max}</label>
-        		<label className="pull-left">{this.state.min}</label>
+                <label className="pull-right">{this.state.max}</label>
+                <label className="pull-left">{this.state.min}</label>
                     <input onChange = {this.handleChange} onMouseUp={this.handleMouseUp} value = {this.state.value} type="range" min={this.state.min} max={this.state.max} step={this.state.step} /> 
-				{this.props.outputlabel} {this.state.value}
+                {this.props.outputlabel} {this.state.value}
+                </div>
 			</div>   
         );
     }
