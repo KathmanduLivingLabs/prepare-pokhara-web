@@ -30,6 +30,10 @@
 	margin-bottom:0;
 }
 
+.jumbotron-loading {
+	background-color: #fff;
+}
+
 input[type="checkbox"] {
     /*display:none;*/
 }

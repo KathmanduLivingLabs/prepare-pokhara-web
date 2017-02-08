@@ -14,8 +14,12 @@ var Banks = React.createClass({
 	},
 	render: function(){
 		return(
-			<div className="header">
-				Welcome to the banks page! {this.props.selectedPage}
+			<div className="header row-fluid">
+				<div className="jumbotron text-center">
+				<h1>Welcome to the banks page!</h1>	
+				<hr/>
+				<h3>This page is currently under development. Please come back later!</h3>	
+				</div>
 			</div>
 			)
 	}

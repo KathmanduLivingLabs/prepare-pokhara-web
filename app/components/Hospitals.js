@@ -8,6 +8,7 @@ var HH = require('./HospitalHelper');
 var Puker = require ('../utils/Puker')
 var LeafletMap = require('./Maps')
 var Toggle = require('./Toggle')
+var Loading = require('./Loading')
 require("../styles/contents.css")
 
 var Hospitals = React.createClass({
@@ -95,9 +96,7 @@ var Hospitals = React.createClass({
 	render: function(){
 		if (this.state.isLoading===true) {
 			return (
-					<div className="header">
-					<h1>I am Loading</h1>
-					</div>
+					<Loading/>
 				)
 
 		} else {
