@@ -79,5 +79,23 @@
 	border-color: #fff;
 }
 .navbar-default .navbar-toggle:hover>.icon-bar {
-	background-color: #6aaf08;
+	background-color: #10A0E6;
+}
+
+
+/* Small Devices, Tablets */
+@media (max-width : 768px) {
+	.navbar-header {
+		margin-top: 15px;
+	    text-align: center;
+	    width: 100%;
+	}
+	.navbar-brand {
+			float:none;
+	}
+
+	.navbar-toggle {
+		margin-top:-7px;
+	}
+
 }
