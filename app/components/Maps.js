@@ -77,7 +77,7 @@ var LeafletMap = React.createClass({
     render: function() {
             return(
                         <div>
-                        <div id="map" style={{height:this.state.height}}>
+                        <div id="map" className="clearfix" style={{height:this.state.height}}>
                         </div> 
                         </div> 
                     )

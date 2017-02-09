@@ -110,7 +110,7 @@ var Hospitals = React.createClass({
 
 					</div>
 
-					<div className="col-md-4 col-xs-4  col-md-4 clearfix" id="hospitals-sidebar" style={{height:this.state.sidebarHeight}}>
+					<div className="col-md-4 col-xs-4  col-md-4 clearfix" id="sidebar" style={{height:this.state.sidebarHeight}}>
 						<SidebarPanel title = "filters">
 							<Toggle title= "facilities" values = {["ICU", "NICU", "Ventilator", "Emergency", "Ambulance", "Xray", "Operation Theatre"]} handler={this.onToggleGroupChange}/>
 							{/*<Checkbox title= "facilities" values = {["ICU", "NICU", "Ventilator", "Emergency", "Ambulance", "Xray", "Operation Theatre"]} handler={this.onCheckboxChange}/>*/}

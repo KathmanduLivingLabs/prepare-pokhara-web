@@ -2,36 +2,38 @@
 #insights .insights-value {
 	text-transform: uppercase;
 	color: #10A0E6;
-	font-size: 2vw	;
+	font-size: 4vmin	;
 	font-weight: bold;
 }
 
-#hospitals-sidebar .insight-title{
+#insights .insight-title{
 	padding-top:10px;
 	text-transform: uppercase;
 	color: #23769E;
-	font-size: 1vw	;
+	font-size: 2.5vmin	;
 	font-weight: bold;
 }
 
 
 #insights .insights-value span {
 	color: #b2b2b2;
-	font-size: 2vw;
+	font-size: 3.5;
 }
 
 #insights .insights-subtext {
-	margin-top:-1vh;
+	margin-top:-1.5vmin;
 	text-transform: uppercase;
 	color: #b2b2b2;
-	font-size: 1vw	;
+	font-size: 2vmin	;
 	font-weight: bold;
+	line-height:2.6vmin;
 }
 
 #insights .insights-row {
-	margin-top:-0.75vh;
+	margin-top:-1.5vmin;
 }
 
 #insights .no-padding {
 	padding:0;
 }
+
