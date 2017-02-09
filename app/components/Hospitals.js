@@ -9,17 +9,22 @@ var Puker = require ('../utils/Puker')
 var LeafletMap = require('./Maps')
 var Toggle = require('./Toggle')
 var Loading = require('./Loading')
+var Updater = require('./Updater')
 require("../styles/contents.css")
 
 var Hospitals = React.createClass({
 	getInitialState: function() {
 		    var maxWindowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - 55;
       		return {
+      			
+      			updaterConfig:{opacity:1, allowPointer:"auto", cursorType: "auto"},
 				sidebarHeight: maxWindowHeight,
 				isLoading:true,
+				
 				filterValues: {wards:[], maxBedCapacity:10000000},
 				insightValues: {stats:{}, geojson:{}},
-				filterParameters: {"type": "hospital","ward": "*", "filters": {}, "variables":{"Bed Capacity":"0"}}
+				filterParameters: {"type": "hospital","ward": "*", "filters": {}, "variables":{"Bed Capacity":"0"}},
+				
 			}		
 	},
 	componentWillMount: function () {
@@ -45,7 +50,7 @@ var Hospitals = React.createClass({
 			this.setState({
 				filterValues: {wards:this.state.filterValues.wards, maxBedCapacity:response.maxBedCapacity},
 				insightValues: {stats: response.stats, geojson:response.geojson},
-				isLoading:false
+				updaterConfig:{opacity:1, allowPointer:"auto", cursorType:"auto"}
 			})
 		}.bind(this));
 
@@ -59,7 +64,8 @@ var Hospitals = React.createClass({
 		}; 
 
 		this.setState({
-			filterParameters: newParameters
+			filterParameters: newParameters,
+			updaterConfig:{opacity:0.6, allowPointer:"none", cursorType:"wait"}
 		}, this.onParameterChange(newParameters))
 	},
 	onSliderChange : function(params) {
@@ -71,7 +77,8 @@ var Hospitals = React.createClass({
 		}; 
 
 		this.setState({
-			filterParameters: newParameters
+			filterParameters: newParameters,
+			updaterConfig:{opacity:0.6, allowPointer:"none", cursorType:"wait"}
 		}, this.onParameterChange(newParameters))
 	},
 	onDropDownChange: function(params) {
@@ -83,7 +90,8 @@ var Hospitals = React.createClass({
 			};
 
 		this.setState({
-			filterParameters:  newParameters
+			filterParameters:  newParameters,
+			updaterConfig:{opacity:0.6, allowPointer:"none", cursorType:"wait"}
 		}, this.onParameterChange(newParameters))
 	},
     updateDimensions: function() {
@@ -104,11 +112,15 @@ var Hospitals = React.createClass({
 			<div className="header ">
 				<div className="row-fluid">
 					<div className="col-md-8 col-xs-8 col-sm-8 no-padding ">
+								<Updater config={this.state.updaterConfig}>
 								<LeafletMap data={this.state.insightValues.geojson} type="hospital"/>
+								</Updater>
 
 					</div>
 
+
 					<div className="col-md-4 col-xs-4  col-md-4 clearfix" id="sidebar" style={{height:this.state.sidebarHeight}}>
+					<Updater config={this.state.updaterConfig}>
 						<SidebarPanel title = "filters">
 							<Toggle title= "facilities" values = {["ICU", "NICU", "Ventilator", "Emergency", "Ambulance", "Xray", "Operation Theatre"]} handler={this.onToggleGroupChange}/>
 							{/*<Checkbox title= "facilities" values = {["ICU", "NICU", "Ventilator", "Emergency", "Ambulance", "Xray", "Operation Theatre"]} handler={this.onCheckboxChange}/>*/}
@@ -123,6 +135,7 @@ var Hospitals = React.createClass({
 							<Insight title="bed capacity" valueL1={this.state.insightValues.stats.selection["Bed Capacity"]} valueL2={this.state.insightValues.stats.overall["Bed Capacity"]} subtextL="beds in total" valueR={this.state.insightValues.stats.insights["Bed Capacity"]} subtextR="of total "/>
 							<Insight title="personnel" valueL1={this.state.insightValues.stats.selection["Personnel Count"]} valueL2={this.state.insightValues.stats.overall["Personnel Count"]} subtextL="personnel" valueR={this.state.insightValues.stats.insights["Personnel Count"]} subtextR="of total "/>
 						</SidebarPanel>
+					</Updater>
 					</div>
 				</div>
 			</div>

@@ -36,6 +36,7 @@
     "react-dropdown": "^1.2.0",
     "react-leaflet": "^1.1.0",
     "react-loader": "^2.4.0",
+    "react-loader-advanced": "^1.4.1",
     "react-rangeslider": "^1.0.9",
     "react-router": "^2.0.0-rc5",
     "react-spinjs": "^3.0.0",

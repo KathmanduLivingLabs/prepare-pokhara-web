@@ -15,7 +15,6 @@ var Slider = React.createClass({
         this.setState({value:e.target.value})
 	},
     handleMouseUp: function(e) {
-        console.log("Selected bed capacity: ",e.target.value)
         this.setState({value:e.target.value}, this.props.handler(e.target.value))
     },
     render: function() {
