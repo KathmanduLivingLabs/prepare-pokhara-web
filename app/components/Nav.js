@@ -5,9 +5,19 @@ var Link=ReactRouter.Link;
 require('../styles/nav.css');
 
 var Nav = React.createClass({
+	contextTypes: {
+		router: React.PropTypes.object.isRequired
+	},
 	getInitialState: function() {
+
+		if (this.props.location.pathname != "/"){
+			var str = this.props.location.pathname
+			var initialPage = str.split('/').slice(1)
+
+		} else {var initialPage = "hospitals"}
+			
 		return {
-			selectedPage: "hospitals",
+			selectedPage: initialPage,
 			pageChoices: []
 		}
 	},
@@ -21,6 +31,7 @@ var Nav = React.createClass({
 		this.props.updateRootState(this.state.selectedPage);
 	},
 	componentWillMount: function () {
+		// console.log(this.props.context)
 		this.getChoices();
 	},
 	componentDidMount: function() {

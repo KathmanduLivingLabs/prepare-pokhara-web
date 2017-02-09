@@ -4,7 +4,7 @@ var Slider = require('./Slider');
 var Insight = require('./Insight');
 var Dropdown = require('./Dropdown');
 var SidebarPanel = require('./SidebarPanel');
-var HH = require('./HospitalHelper');
+var FetchData = require('./HospitalHelper');
 var Puker = require ('../utils/Puker')
 var LeafletMap = require('./Maps')
 var Toggle = require('./Toggle')
@@ -23,13 +23,13 @@ var Hospitals = React.createClass({
 			}		
 	},
 	componentWillMount: function () {
-		HH.getWards().then(function(arr){
+		FetchData.getWards().then(function(arr){
 			this.setState({
 				filterValues: {wards:arr, maxBedCapacity:this.state.filterValues.maxBedCapacity}
 			})
 		}.bind(this));
 
-		HH.getInsights(this.state.filterParameters).then(function(response){
+		FetchData.getHospitalInsights(this.state.filterParameters).then(function(response){
 			this.setState({
 				filterValues: {wards:this.state.filterValues.wards, maxBedCapacity:response.maxBedCapacity},
 				insightValues: {stats: response.stats, geojson:response.geojson},
@@ -41,7 +41,7 @@ var Hospitals = React.createClass({
 		window.addEventListener("resize", this.updateDimensions);
 	},
 	onParameterChange: function(params) {
-		HH.getInsights(params).then(function(response){
+		FetchData.getHospitalInsights(params).then(function(response){
 			this.setState({
 				filterValues: {wards:this.state.filterValues.wards, maxBedCapacity:response.maxBedCapacity},
 				insightValues: {stats: response.stats, geojson:response.geojson},
@@ -104,9 +104,7 @@ var Hospitals = React.createClass({
 			<div className="header ">
 				<div className="row-fluid">
 					<div className="col-md-8 col-xs-8 col-sm-8 no-padding ">
-						<div id="map-container" style={{height:"100px"}}>
-								<LeafletMap data={this.state.insightValues.geojson}/>
-						</div>
+								<LeafletMap data={this.state.insightValues.geojson} type="hospital"/>
 
 					</div>
 

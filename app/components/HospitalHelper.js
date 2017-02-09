@@ -18,7 +18,9 @@ var fetchInsights = function(params) {
 		})
 }
 
-var hospitalHelper = {
+
+
+var fetchData = {
 	getWards: function() {
 		var myWards = fetchDropDowns();
 		return axios.all([myWards])
@@ -37,11 +39,11 @@ var hospitalHelper = {
 				
 			})
 	},
-	getInsights: function(params) {
+	getHospitalInsights: function(params) {
 		var myInsights = fetchInsights(params);
 		return axios.all([myInsights])
 			.then(function(response){
-				
+				// console.log("myResponse",response[0].data.initialMetrics.slider)
 				var maxBedCapacity = response[0].data.initialMetrics.slider["Bed Capacity"];
 				var stats = response[0].data.stats;
 				var geojson = response[0].data.geojson;
@@ -53,8 +55,27 @@ var hospitalHelper = {
 				}
 				
 			})
+	},
+	getSchoolInsights: function(params) {
+		var myInsights = fetchInsights(params);
+		return axios.all([myInsights])
+			.then(function(response){
+				var maxStudents = response[0].data.initialMetrics.slider["Students"];
+				var stats = response[0].data.stats;
+				var geojson = response[0].data.geojson;
+
+				return {
+					maxStudents:maxStudents,
+					stats:stats,
+					geojson:geojson
+				}
+				
+			})
 	}
+
 }
 
-module.exports = hospitalHelper
+
+module.exports =  fetchData
+
 

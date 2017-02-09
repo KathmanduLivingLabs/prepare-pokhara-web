@@ -25,7 +25,7 @@ var Home = React.createClass({
 	render: function(){
 		return(
 			<div>
-				<Nav updateRootState={this.updateNavState}/>
+				<Nav updateRootState={this.updateNavState} location={this.props.location} />
 				{React.cloneElement(this.props.children, this.state)}
 			</div>
 			)

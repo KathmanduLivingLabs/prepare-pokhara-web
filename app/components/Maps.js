@@ -12,18 +12,35 @@ var LeafletMap = React.createClass({
             isLoading:false
         }
     },
-    addPopup: function (d) {
-        return ('<strong>Name: </strong>'+d.name
-                +'<br/><strong>ICU: </strong>'+d["facility:icu"] 
-                +'<br/><strong>Ventilator: </strong>'+d["facility:ventilator"] 
-                +'<br/><strong>Emergency Services: </strong>'+d["emergency_service"] 
-                +'<br/><strong>Operation Theatre: </strong>'+d["facility:operating_theatre"]
-                +'<br/><strong>NICU: </strong>'+d["facility:nicu"]
-                +'<br/><strong>Emergency: </strong>'+d["emergency"]
-                +'<br/><strong>X-Ray: </strong>'+d["facility:x-ray"]
-                +'<br/><strong>Bed Capacity: </strong>'+ d["capacity:beds"]
-                +'<br/><strong>Personnel Count: </strong>'+ d["personnel:count"]
-                )
+    addPopup: function (d, type) {
+        // console.log(type)
+        switch(type) {
+            case "hospital":
+                return ('<strong>Name: </strong>'+d.name
+                    +'<br/><strong>Name (Nepali):  </strong>'+d["name:ne"]
+                    +'<br/><strong>ICU: </strong>'+d["facility:icu"]
+                    +'<br/><strong>Ventilator: </strong>'+d["facility:ventilator"] 
+                    +'<br/><strong>Emergency Services: </strong>'+d["emergency_service"] 
+                    +'<br/><strong>Operation Theatre: </strong>'+d["facility:operating_theatre"]
+                    +'<br/><strong>NICU: </strong>'+d["facility:nicu"]
+                    +'<br/><strong>Emergency: </strong>'+d["emergency"]
+                    +'<br/><strong>X-Ray: </strong>'+d["facility:x-ray"]
+                    +'<br/><strong>Bed Capacity: </strong>'+ d["capacity:beds"]
+                    +'<br/><strong>Personnel Count: </strong>'+ d["personnel:count"]
+                    )
+            case "school":
+                return ('<strong>Name: </strong>'+d.name
+                        +'<br/><strong>Name (Nepali):  </strong>'+d["name:ne"]
+                        +'<br/><strong>Operator Type: </strong>'+d["operator:type"]
+                        +'<br/><strong>Total Students: </strong>'+d["student:count"]
+                        +'<br/><strong>Total Personnel: </strong>'+d["personnel:count"]
+
+
+                    )
+            default:
+                return ('<strong>Name: </strong>'+d.name)
+        } 
+
     },
     rendermap: function() {
         var map = this.map = L.map(ReactDOM.findDOMNode(this)).setView([28.207, 83.992], 12);
@@ -37,7 +54,7 @@ var LeafletMap = React.createClass({
         markerLayer = new L.featureGroup;
         data.features.map(function(d){
           var marker = new L.marker([d.geometry.coordinates[1], d.geometry.coordinates[0]]).addTo(markerLayer)
-          .bindPopup(this.addPopup(d.properties.tags))
+          .bindPopup(this.addPopup(d.properties.tags, this.props.type))
         }.bind(this));
         markerLayer.addTo(this.map);
     },
@@ -48,7 +65,7 @@ var LeafletMap = React.createClass({
         markerLayer = new L.featureGroup;
         data.features.map(function(d){
           var marker = new L.marker([d.geometry.coordinates[1], d.geometry.coordinates[0]]).addTo(markerLayer)
-          .bindPopup(this.addPopup(d.properties.tags))
+          .bindPopup(this.addPopup(d.properties.tags, this.props.type))
           // .bindPopup('<strong>Name</strong><br>'+d.properties.tags.name)
         }.bind(this));
         markerLayer.addTo(this.map);
