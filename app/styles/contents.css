@@ -1,51 +1,51 @@
 .header {
-	margin-top:53px;
+    margin-top: 53px;
 }
 
 .test {
-	border: 1px solid red;
+    border: 1px solid red;
 }
 
 #sidebar {
-	padding-top: 5px;
-	overflow-y:scroll;
-	/*height:90vh;*/
+    padding-top: 5px;
+    overflow-y: scroll;
+    /*height:90vh;*/
 }
 
-#sidebar .filter-title{
-	padding-top:10px;
-	text-transform: uppercase;
-	color: #23769E;
-	font-size: 2.5vmin	;
-	font-weight: bold;
+#sidebar .filter-title {
+    padding-top: 10px;
+    text-transform: uppercase;
+    color: #23769E;
+    font-size: 2.5vmin;
+    font-weight: bold;
 }
 
 #sidebar .section-title {
-	border-bottom: 1px solid #10A0E6;
-	margin-bottom:0;
+    border-bottom: 1px solid #10A0E6;
+    margin-bottom: 0;
 }
 
 .jumbotron-loading {
-	background-color: #fff;
+    background-color: #fff;
 }
 
 input[type="checkbox"] {
     /*display:none;*/
 }
+
 input[type="checkbox"] {
-    display:inline-block;
-    width:19px;
-    height:19px;
-    margin:-1px 1px 0 0;
-    vertical-align:middle;
-    cursor:pointer;
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    margin: -1px 1px 0 0;
+    vertical-align: middle;
+    cursor: pointer;
 }
 
 .checkboxes {
-	padding-top:10px;
+    padding-top: 10px;
 }
 
 .no-padding {
-	padding:0;
+    padding: 0;
 }
-

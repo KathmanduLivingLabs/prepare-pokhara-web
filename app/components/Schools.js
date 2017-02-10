@@ -4,111 +4,109 @@ var Slider = require('./Slider');
 var Dropdown = require('./Dropdown');
 var SidebarPanel = require('./SidebarPanel');
 var LeafletMap = require('./Maps')
-var Loading = require('./Loading')
-var FetchData = require('./HospitalHelper');
+var Loading = require('../utils/Loading')
+var FetchData = require('../utils/FetchData');
 var Insight = require('./Insight');
-var Updater = require('./Updater')
+var Updater = require('../utils/Updater')
 
 
 // var MyMap = require('./Maps')
 require("../styles/contents.css")
 
 var Schools = React.createClass({
-	getInitialState: function() {
-		    var maxWindowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - 55;
-      		return {
-				updaterConfig:{opacity:1, allowPointer:"auto"},
-				sidebarHeight: maxWindowHeight,
-				isLoading:true,
-				filterValues: {wards:[], maxStudents:10000000},
-				insightValues: {stats:{}, geojson:{}},
-				filterParameters: {"type": "school","ward": "*", "filters": {"Operator Type": ["private","government","community","others"]}, "variables":{}}
-			}		
-	},
-	componentWillMount: function () {
-		FetchData.getWards().then(function(arr){
-			this.setState({
-				filterValues: {wards:arr, maxStudents:this.state.filterValues.maxStudents},
-			})
-		}.bind(this));
+    getInitialState: function() {
+        var maxWindowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - 55;
+        return {
+            updaterConfig: { opacity: 1, allowPointer: "auto" },
+            sidebarHeight: maxWindowHeight,
+            isLoading: true,
+            filterValues: { wards: [], maxStudents: 10000000 },
+            insightValues: { stats: {}, geojson: {} },
+            filterParameters: { "type": "school", "ward": "*", "filters": { "Operator Type": ["private", "government", "community", "others"] }, "variables": {} }
+        }
+    },
+    componentWillMount: function() {
+        FetchData.getWards().then(function(arr) {
+            this.setState({
+                filterValues: { wards: arr, maxStudents: this.state.filterValues.maxStudents },
+            })
+        }.bind(this));
 
-		FetchData.getSchoolInsights(this.state.filterParameters).then(function(response){
-			this.setState({
-				filterValues: {wards:this.state.filterValues.wards, maxStudents:response.maxStudents},
-				insightValues: {stats: response.stats, geojson:response.geojson},
-				isLoading:false
-			})
-		}.bind(this));
+        FetchData.getSchoolInsights(this.state.filterParameters).then(function(response) {
+            this.setState({
+                filterValues: { wards: this.state.filterValues.wards, maxStudents: response.maxStudents },
+                insightValues: { stats: response.stats, geojson: response.geojson },
+                isLoading: false
+            })
+        }.bind(this));
 
-	},
-	onParameterChange: function(params) {
-		FetchData.getHospitalInsights(params).then(function(response){
-			this.setState({
-				filterValues: {wards:this.state.filterValues.wards, maxStudents:response.maxStudents},
-				insightValues: {stats: response.stats, geojson:response.geojson},
-				updaterConfig:{opacity:1, allowPointer:"auto"}
-			})
-		}.bind(this));
-		console.log(this.state.insightValues.stats)
+    },
+    onParameterChange: function(params) {
+        FetchData.getHospitalInsights(params).then(function(response) {
+            this.setState({
+                filterValues: { wards: this.state.filterValues.wards, maxStudents: response.maxStudents },
+                insightValues: { stats: response.stats, geojson: response.geojson },
+                updaterConfig: { opacity: 1, allowPointer: "auto" }
+            })
+        }.bind(this));
+    },
+    componentDidMount: function() {
+        window.addEventListener("resize", this.updateDimensions);
+    },
+    onCheckBoxChange: function(params) {
+        var newParameters = {
+            "type": this.state.filterParameters.type,
+            "ward": this.state.filterParameters.ward,
+            "filters": params,
+            "variables": this.state.filterParameters.variables
+        };
 
-	},
-	componentDidMount: function() {
-		window.addEventListener("resize", this.updateDimensions);
-	},
-	onCheckBoxChange : function(params) {
-		var newParameters = {
-				"type": this.state.filterParameters.type,
-				"ward": this.state.filterParameters.ward, 
-				"filters": params, 
-				"variables":this.state.filterParameters.variables
-			};
-
-		this.setState({
-			filterParameters:  newParameters,
-			updaterConfig:{opacity:0.6, allowPointer:"none"}
-		}, this.onParameterChange(newParameters))		
-	},
-	onDropDownChange: function(params) {
-		var newParameters = {
-				"type": this.state.filterParameters.type,
-				"ward": params, 
-				"filters": this.state.filterParameters.filters, 
-				"variables":this.state.filterParameters.variables
-			};
-
-		this.setState({
-			filterParameters:  newParameters,
-			updaterConfig:{opacity:0.6, allowPointer:"none"}
-		}, this.onParameterChange(newParameters))
-	},
-	onSliderChange: function(params) {
-		var newParameters = {
-				"type": this.state.filterParameters.type,
-				"ward": this.state.filterParameters.ward, 
-				"filters": this.state.filterParameters.filters, 
-				"variables":{"Students": params}
-		}; 
-
-		this.setState({
-			filterParameters: newParameters,
-			updaterConfig:{opacity:0.6, allowPointer:"none"}
-		}, this.onParameterChange(newParameters))
-	},
-    updateDimensions: function() {
-        var maxWindowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)-55;
         this.setState({
-            sidebarHeight: maxWindowHeight 
+            filterParameters: newParameters,
+            updaterConfig: { opacity: 0.6, allowPointer: "none" }
+        }, this.onParameterChange(newParameters))
+    },
+    onDropDownChange: function(params) {
+        var newParameters = {
+            "type": this.state.filterParameters.type,
+            "ward": params,
+            "filters": this.state.filterParameters.filters,
+            "variables": this.state.filterParameters.variables
+        };
+
+        this.setState({
+            filterParameters: newParameters,
+            updaterConfig: { opacity: 0.6, allowPointer: "none" }
+        }, this.onParameterChange(newParameters))
+    },
+    onSliderChange: function(params) {
+        var newParameters = {
+            "type": this.state.filterParameters.type,
+            "ward": this.state.filterParameters.ward,
+            "filters": this.state.filterParameters.filters,
+            "variables": { "Students": params }
+        };
+
+        this.setState({
+            filterParameters: newParameters,
+            updaterConfig: { opacity: 0.6, allowPointer: "none" }
+        }, this.onParameterChange(newParameters))
+    },
+    updateDimensions: function() {
+        var maxWindowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - 55;
+        this.setState({
+            sidebarHeight: maxWindowHeight
         })
     },
-	render: function(){
-		if (this.state.isLoading===true) {
-			return (
-					<Loading/>
-				)
+    render: function() {
+        if (this.state.isLoading === true) {
+            return (
+                <Loading/>
+            )
 
-		} else {
-			return (
-				<div className="header ">
+        } else {
+            return (
+                <div className="header ">
 					<div className="row-fluid">
 						<div className="col-md-8 col-xs-8 col-sm-8 no-padding ">
 							<Updater config={this.state.updaterConfig}>
@@ -135,10 +133,10 @@ var Schools = React.createClass({
 						</div>
 					</div>
 				</div>
-				)	
-			}
+            )
+        }
 
-	}
+    }
 })
 
 module.exports = Schools;

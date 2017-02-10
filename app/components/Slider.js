@@ -1,35 +1,40 @@
 var React = require('react');
-require('../styles/slider.css');
+var Nouislider = require('react-nouislider')
+
+require('../styles/slider.css')
+require('../styles/noui.css')
 
 var Slider = React.createClass({
-    getInitialState: function(){
+    getInitialState: function() {
         return {
-            value: this.props.value,
-            min: this.props.min,
-            max: this.props.max,
-            step: this.props.step,
+            range: { min: Number(this.props.min), max: Number(this.props.max) },
+            start: [Number(this.props.min), Number(this.props.max)],
+            step: Number(this.props.step),
             label: this.props.label.toUpperCase()
         };
     },
- 	handleChange: function(e) {
-        this.setState({value:e.target.value})
-	},
-    handleMouseUp: function(e) {
-        this.setState({value:e.target.value}, this.props.handler(e.target.value))
+
+    handleChange: function(e) {
+        var value = {}
+        value.high = Number(e[1])
+        value.low = Number(e[0])
+
+        var start = [value.low, value.high]
+        this.setState({ value: value, start: start }, this.props.handler(value))
+
     },
     render: function() {
         return (
-        	<div className="clearfix row-fluid">
-                        <div className="row-fluid filter-title">
-                            {this.props.title}
-                        </div>
-                <label className="pull-right">{this.state.max}</label>
-                <label className="pull-left">{this.state.min}</label>
-                    <input onChange = {this.handleChange} onMouseUp={this.handleMouseUp} value = {this.state.value} type="range" min={this.state.min} max={this.state.max} step={this.state.step} /> 
-                {this.props.outputlabel} {this.state.value}
-			</div>   
+            <div className="clearfix row-fluid">
+                <div className="row-fluid filter-title">
+                    {this.props.title}
+                </div>
+                <div className = "col-md-12 noui-content">
+                  <Nouislider onChange = {this.handleChange} connect={true} step = {this.state.step} range={this.state.range} start={this.state.start} tooltips />
+                </div>
+            </div>
         );
     }
 });
- 
+
 module.exports = Slider;

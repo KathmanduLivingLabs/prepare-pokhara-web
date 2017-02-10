@@ -1,45 +1,47 @@
 var React = require('react');
 var ReactRouter = require('react-router')
-var Link=ReactRouter.Link;
+var Link = ReactRouter.Link;
 
 require('../styles/nav.css');
 
 var Nav = React.createClass({
-	contextTypes: {
-		router: React.PropTypes.object.isRequired
-	},
-	getInitialState: function() {
+    contextTypes: {
+        router: React.PropTypes.object.isRequired
+    },
+    getInitialState: function() {
 
-		if (this.props.location.pathname != "/"){
-			var str = this.props.location.pathname
-			var initialPage = str.split('/').slice(1)
+        if (this.props.location.pathname != "/") {
+            var str = this.props.location.pathname
+            var initialPage = str.split('/').slice(1)
 
-		} else {var initialPage = "hospitals"}
-			
-		return {
-			selectedPage: initialPage,
-			pageChoices: []
-		}
-	},
-	changeChoices: function (page) {
-		this.setState({selectedPage:page}, this.getChoices)
-	},
-	getChoices: function() {
-		var pageChoices = ["hospitals", "schools", "banks"]
-		var newPages =	pageChoices.filter(function(page){return page!= this.state.selectedPage}.bind(this))
-		this.setState({pageChoices: newPages});
-		this.props.updateRootState(this.state.selectedPage);
-	},
-	componentWillMount: function () {
-		// console.log(this.props.context)
-		this.getChoices();
-	},
-	componentDidMount: function() {
-		// console.log("we mounted", this.state.pageChoices)
-	},
-	render: function(){
-		return(
-				<div>
+        } else {
+            var initialPage = "hospitals" }
+
+        return {
+            selectedPage: initialPage,
+            pageChoices: []
+        }
+    },
+    changeChoices: function(page) {
+        this.setState({ selectedPage: page }, this.getChoices)
+    },
+    getChoices: function() {
+        var pageChoices = ["hospitals", "schools", "banks"]
+        var newPages = pageChoices.filter(function(page) {
+            return page != this.state.selectedPage }.bind(this))
+        this.setState({ pageChoices: newPages });
+        this.props.updateRootState(this.state.selectedPage);
+    },
+    componentWillMount: function() {
+        // console.log(this.props.context)
+        this.getChoices();
+    },
+    componentDidMount: function() {
+        // console.log("we mounted", this.state.pageChoices)
+    },
+    render: function() {
+        return (
+            <div>
 				    <nav id="menu" className="navbar navbar-default navbar-fixed-top">
 				        <div className="container-fluid">
 				            <div className="navbar-header">
@@ -61,8 +63,8 @@ var Nav = React.createClass({
 				        </div>
 				    </nav>
 				</div>
-			)
-	}
+        )
+    }
 
 
 });

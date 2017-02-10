@@ -12,7 +12,7 @@ var Schools = require('../components/Schools');
 var Hospitals = require('../components/Hospitals');
 
 var routes = (
-	<Router history={hashHistory}>
+    <Router history={hashHistory}>
 		<Route path='/' component = {Home}>
 			<IndexRoute component={Hospitals}/>
 			<Route path = "/banks" component={Banks}/>

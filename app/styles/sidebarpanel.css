@@ -1,22 +1,23 @@
 .section-title {
-	border-bottom: 1px solid #10A0E6;
-	margin-bottom:0;
+    border-bottom: 1px solid #10A0E6;
+    margin-bottom: 0;
 }
 
 .sidebar-title {
-	text-transform: uppercase;
-	color: #10A0E6;
-	font-size: 3.5vmin	;
-	font-weight: bold;
+    text-transform: uppercase;
+    color: #10A0E6;
+    font-size: 3.5vmin;
+    font-weight: bold;
 }
 
 .sidebar-panel {
-	padding-bottom:25px;
-    position: relative; /*newly added*/
+    padding-bottom: 25px;
+    position: relative;
+    /*newly added*/
 }
 
 .sidebar-content {
-	position:absolute;
-	top:0;
-	left:0;
+    position: absolute;
+    top: 0;
+    left: 0;
 }

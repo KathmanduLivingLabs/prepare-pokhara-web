@@ -1,10 +1,10 @@
-var React = require ('react')
+var React = require('react')
 require('../styles/insight.css')
 
 var Insight = React.createClass({
-	render: function (){
-		return (
-						<div id="insights" className="clearfix">
+    render: function() {
+        return (
+            <div id="insights" className="clearfix">
 							<div className="row-fluid insight-title">
 								{this.props.title.toUpperCase()}
 							</div>
@@ -27,9 +27,9 @@ var Insight = React.createClass({
 									</div>
 								</div>
 							</div>
-						</div>
-			)
-	}
+			</div>
+        )
+    }
 })
 
 module.exports = Insight;
