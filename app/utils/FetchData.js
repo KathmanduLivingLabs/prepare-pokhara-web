@@ -74,6 +74,35 @@ var fetchData = {
             }).catch(function(err){
                 console.warn('Error in getSchoolInsights:', err)
             })
+    },
+    getBanks: function(params) {
+        var myInsights = fetchInsights(params);
+        return axios.all([myInsights])
+            .then(function(response) {
+                var operators = ["All Banks"]
+                response[0].data.constraints.operator.map(function(operator){
+                    operators.push(operator)
+                });
+
+                return operators;
+            }).catch(function(err){
+                console.warn('Error in getBanks:', err)
+            })
+    } ,
+    getBankInsights: function(params) {
+        var myInsights = fetchInsights(params);
+        return axios.all([myInsights])
+            .then(function(response) {
+                var stats = response[0].data.stats; 
+                var geojson = response[0].data.geojson;
+
+                return {
+                    stats:stats,
+                    geojson:geojson
+                }
+            }).catch(function(err){
+                console.warn('Error in getBankInsights:', err)
+            })
     }
 
 }

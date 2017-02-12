@@ -69,7 +69,7 @@ var Schools = React.createClass({
     onDropDownChange: function(params) {
         var newParameters = {
             "type": this.state.filterParameters.type,
-            "ward": params,
+            "ward": params.osmID,
             "filters": this.state.filterParameters.filters,
             "variables": this.state.filterParameters.variables
         };
@@ -120,7 +120,7 @@ var Schools = React.createClass({
 								{/*<Toggle title= "facilities" values = {["ICU", "NICU", "Ventilator", "Emergency", "Ambulance", "Xray", "Operation Theatre"]} handler={this.onToggleGroupChange}/>*/}
 								<Checkbox title= "Operator Type" values = {["private", "community", "government", "others"]} handler={this.onCheckBoxChange}/>
 								<Slider title= "students" outputlabel="Greater than" value="0" min="0" max={this.state.filterValues.maxStudents}step = "25" label="Select number of beds:" handler={this.onSliderChange}/>
-								<Dropdown title= "ward number"  options={this.state.filterValues.wards} handler={this.onDropDownChange}/>
+								<Dropdown.WardDropdown title= "ward number"  options={this.state.filterValues.wards} handler={this.onDropDownChange}/>
 							</SidebarPanel>
 
 							<SidebarPanel title="insights">

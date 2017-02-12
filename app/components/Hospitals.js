@@ -84,7 +84,7 @@ var Hospitals = React.createClass({
     onDropDownChange: function(params) {
         var newParameters = {
             "type": this.state.filterParameters.type,
-            "ward": params,
+            "ward": params.osmID,
             "filters": this.state.filterParameters.filters,
             "variables": this.state.filterParameters.variables
         };
@@ -127,7 +127,7 @@ var Hospitals = React.createClass({
 							<Slider title= "bed capacity" outputlabel="Greater than" value="0" min="0" max={this.state.filterValues.maxBedCapacity.toString()} step = "25" label="Select number of beds:" handler={this.onSliderChange}/>
 							
 
-							<Dropdown title= "ward number"  options={this.state.filterValues.wards} handler={this.onDropDownChange}/>
+							<Dropdown.WardDropdown title= "ward number"  options={this.state.filterValues.wards} handler={this.onDropDownChange}/>
 						</SidebarPanel>
 
 						<SidebarPanel title="insights">

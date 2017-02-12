@@ -22,6 +22,10 @@ var popupHelpers = {
 	                    +'<br/><strong>Bed Capacity: </strong>'+ d["capacity:beds"]
 	                    +'<br/><strong>Personnel Count: </strong>'+ d["personnel:count"]
 				break;
+			case "bank":
+	        	popupContent = '<strong>Name: </strong>'+d.name
+	                  
+				break;
 			case "try":
 				popupContent = '<div class = "container-fluid row-fluid popup" style="">'+
 	                            '<form role="form" class="form'+id+'" enctype="multipart/form-data">'
