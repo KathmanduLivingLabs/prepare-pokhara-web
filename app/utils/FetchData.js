@@ -3,7 +3,7 @@ var axios = require('axios');
 
 var rootURL = 'http://api-preparepokhara.herokuapp.com/api'
 
-var fetchDropDowns = function() {
+var fetchWards = function() {
     return axios({
         method: 'get',
         url: rootURL + '/v1/wards'
@@ -22,7 +22,7 @@ var fetchInsights = function(params) {
 
 var fetchData = {
     getWards: function() {
-        var myWards = fetchDropDowns();
+        var myWards = fetchWards();
         return axios.all([myWards])
             .then(function(response) {
                 var wards = [{
@@ -36,14 +36,15 @@ var fetchData = {
                 });
 
                 return wards
-
+            }).catch(function(err){
+                console.warn('Error in getWards:', err)
             })
     },
     getHospitalInsights: function(params) {
         var myInsights = fetchInsights(params);
         return axios.all([myInsights])
             .then(function(response) {
-                // console.log("myResponse",response[0].data.initialMetrics.slider)
+                // console.log(response[0].data.initialMetrics.slider)
                 var maxBedCapacity = response[0].data.initialMetrics.slider["Bed Capacity"];
                 var stats = response[0].data.stats;
                 var geojson = response[0].data.geojson;
@@ -53,7 +54,8 @@ var fetchData = {
                     stats: stats,
                     geojson: geojson
                 }
-
+            }).catch(function(err){
+                console.warn('Error in getHospitalInsights:', err)
             })
     },
     getSchoolInsights: function(params) {
@@ -69,7 +71,8 @@ var fetchData = {
                     stats: stats,
                     geojson: geojson
                 }
-
+            }).catch(function(err){
+                console.warn('Error in getSchoolInsights:', err)
             })
     }
 

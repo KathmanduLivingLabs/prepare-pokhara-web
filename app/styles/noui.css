@@ -405,6 +405,11 @@
     display: none;
 }
 
+
+.noui-content {
+    padding-top: 25px;
+}
+
 .noUi-tooltip {
     display: block;
     position: absolute;
@@ -415,6 +420,4 @@
     padding: 0px;
     color: #999;
     text-align: center;
-    
-    /*margin-left:10px;*/
 }

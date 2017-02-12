@@ -24,6 +24,3 @@ input[type=range]::-moz-range-thumb {
     cursor: pointer;
 }
 
-.noui-content {
-    padding-top: 25px;
-}
