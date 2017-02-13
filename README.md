@@ -4,6 +4,7 @@ This repository contains all the front-end development code for the [Prepare Pok
 Once you have cloned the repo, please use the following commands from the root directory of the repo to host a local version of the app in your computer (please note that you need to have nodejs pre-installed for these commands to work.) 
 
 `npm install`
+
 `npm run start`
 
 ## Currently under development
@@ -19,7 +20,7 @@ The following is a checklist of the things that are done, and the activities tha
 		- [X] Reusable map component (`/components/Maps.js`)
 		- [ ] Reusable C3 based vertical chart component
 		- [X] Reusable dropdown component (`/components/Dropdown.js`) 
-- [ ] Application routing (/config/routes.js)
+- [X] Application routing (/config/routes.js)
 	- `Home.js` is the parent container, and routing for the following components has been achieved:
 		- [X] Hospitals Component (`/components/Hospitals.js`)
 		- [X] Banks Component (`/components/Banks.js`)
