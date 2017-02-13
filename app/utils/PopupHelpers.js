@@ -3,7 +3,7 @@ var popupHelpers = {
 		var popupContent = "";	
 		switch (type) {
 			case "school":
-				popupContent = '<strong>Name: </strong>'+d.name
+				popupContent = '<strong>Name: </strong>'+ d.name
 	                    +'<br/><strong>Name (Nepali):  </strong>'+d["name:ne"]
 	                    +'<br/><strong>Operator Type: </strong>'+d["operator:type"]
 	                    +'<br/><strong>Total Students: </strong>'+d["student:count"]
@@ -146,7 +146,6 @@ var popupHelpers = {
 			default:
 
 		}
-
 		return popupContent;
 	}
 

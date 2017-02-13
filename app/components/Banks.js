@@ -12,6 +12,9 @@ var Insight = require('./Insight');
 require("../styles/contents.css")
 
 var Banks = React.createClass({
+    contextTypes: {
+        router: React.PropTypes.object.isRequired
+    },
     getATMCoverageSubtext: function(response) {
               
         var coverage = ((response.stats.selection.ATM/response.stats.selection.total)*100).toFixed(0)
