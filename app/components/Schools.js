@@ -3,7 +3,7 @@ var Checkbox = require('./Checkbox');
 var Slider = require('./Slider');
 var Dropdown = require('./Dropdown');
 var SidebarPanel = require('./SidebarPanel');
-var LeafletMap = require('./Maps')
+var Maps = require('./Maps')
 var Loading = require('../utils/Loading')
 var FetchData = require('../utils/FetchData');
 var Insight = require('./Insight');
@@ -14,6 +14,9 @@ var Updater = require('../utils/Updater')
 require("../styles/contents.css")
 
 var Schools = React.createClass({
+    contextTypes : {
+        router: React.PropTypes.object.isRequired
+    },
     getInitialState: function() {
         var maxWindowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - 55;
         return {
@@ -92,6 +95,9 @@ var Schools = React.createClass({
             updaterConfig: { opacity: 0.6, allowPointer: "none" }
         }, this.onParameterChange(newParameters))
     },
+    onEdit: function() {
+
+    },
     updateDimensions: function() {
         var maxWindowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - 55;
         this.setState({
@@ -110,7 +116,7 @@ var Schools = React.createClass({
 					<div className="row-fluid">
 						<div className="col-md-8 col-xs-8 col-sm-8 no-padding ">
 							<Updater config={this.state.updaterConfig}>
-							<LeafletMap data={this.state.insightValues.geojson} type="school"/>
+							<Maps.Multi data={this.state.insightValues.geojson} type="school" handler={this.onEdit}/>
 							</Updater>
 						</div>
 

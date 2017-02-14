@@ -10,6 +10,7 @@ var Home = require('../components/Home');
 var Banks = require('../components/Banks');
 var Schools = require('../components/Schools');
 var Hospitals = require('../components/Hospitals');
+var Edit = require('../components/Edit');
 
 var routes = (
     <Router history={hashHistory}>
@@ -19,6 +20,7 @@ var routes = (
 			<Route path = "/schools" component={Schools}/>
 			<Route path = "/hospitals" component={Hospitals}/>
 		</Route>
+		<Route path='/edit' component={Edit}/>
 	</Router>
 );
 

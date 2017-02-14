@@ -6,13 +6,16 @@ var Dropdown = require('./Dropdown');
 var SidebarPanel = require('./SidebarPanel');
 var FetchData = require('../utils/FetchData');
 var Puker = require('../utils/Puker')
-var LeafletMap = require('./Maps')
+var Maps = require('./Maps')
 var Toggle = require('./Toggle')
 var Loading = require('../utils/Loading')
 var Updater = require('../utils/Updater')
 require("../styles/contents.css")
 
 var Hospitals = React.createClass({
+    contextTypes : {
+        router: React.PropTypes.object.isRequired
+    },
     getInitialState: function() {
         var maxWindowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - 55;
         return {
@@ -94,6 +97,16 @@ var Hospitals = React.createClass({
             updaterConfig: { opacity: 0.6, allowPointer: "none" }
         }, this.onParameterChange(newParameters))
     },
+    onEdit : function(data) {
+        this.context.router.push({
+            pathname:'/edit',
+            state: {
+                data: data,
+                parentLocation: "hospitals",
+                id: data.id
+            }
+        })
+    },
     updateDimensions: function() {
         var maxWindowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - 55;
         this.setState({
@@ -113,9 +126,8 @@ var Hospitals = React.createClass({
 				<div className="row-fluid">
 					<div className="col-md-8 col-xs-8 col-sm-8 no-padding ">
 								<Updater config={this.state.updaterConfig}>
-								<LeafletMap data={this.state.insightValues.geojson} type="hospital"/>
+								<Maps.Multi data={this.state.insightValues.geojson} type="hospital" handler={this.onEdit}/>
 								</Updater>
-
 					</div>
 
 

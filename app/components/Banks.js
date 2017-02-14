@@ -4,7 +4,7 @@ var Loading = require('../utils/Loading')
 var Updater = require('../utils/Updater')
 var Dropdown = require('./Dropdown');
 var SidebarPanel = require('./SidebarPanel');
-var LeafletMap = require('./Maps')
+var Maps = require('./Maps')
 var Toggle = require('./Toggle')
 var Insight = require('./Insight');
 
@@ -74,7 +74,6 @@ var Banks = React.createClass({
         }.bind(this));
 
         FetchData.getBanks(this.state.filterParameters).then(function(arr) {
-            // console.log("Mybanks", arr)
             this.setState({
                 filterValues: { wards: this.state.filterValues.wards, operators: arr }
             })
@@ -121,7 +120,6 @@ var Banks = React.createClass({
 
     },
     onBankChange: function(params){
-        // console.log(params);
         if (this.state.filterParameters.filters.ATM) {
             var newParameters = {
                 "type": this.state.filterParameters.type,
@@ -172,6 +170,9 @@ var Banks = React.createClass({
             }, this.onParameterChange(newParameters))
         }
     },
+    onEdit: function() {
+
+    },
     updateDimensions: function() {
         var maxWindowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - 55;
         this.setState({
@@ -191,7 +192,7 @@ var Banks = React.createClass({
                 <div className="row-fluid">
                     <div className="col-md-8 col-xs-8 col-sm-8 no-padding ">
                                 <Updater config={this.state.updaterConfig}>
-                                <LeafletMap data={this.state.insightValues.geojson} type="bank"/>
+                                <Maps.Multi data={this.state.insightValues.geojson} type="bank" handler={this.onEdit}/>
                                 </Updater>
                     </div>
 

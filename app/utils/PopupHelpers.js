@@ -24,6 +24,20 @@ var popupHelpers = {
 				break;
 			case "bank":
 	        	popupContent = '<strong>Name: </strong>'+d.name
+
+	        case "hospitaledit":
+	        	popupContent = '<strong>Name: </strong>'+d.name
+	                    +'<br/><strong>Name (Nepali):  </strong>'+d["name:ne"]
+	                    +'<br/><strong>ICU: </strong>'+d["facility:icu"]
+	                    +'<br/><strong>Ventilator: </strong>'+d["facility:ventilator"] 
+	                    +'<br/><strong>Emergency Services: </strong>'+d["emergency_service"] 
+	                    +'<br/><strong>Operation Theatre: </strong>'+d["facility:operating_theatre"]
+	                    +'<br/><strong>NICU: </strong>'+d["facility:nicu"]
+	                    +'<br/><strong>Emergency: </strong>'+d["emergency"]
+	                    +'<br/><strong>X-Ray: </strong>'+d["facility:x-ray"]
+	                    +'<br/><strong>Bed Capacity: </strong>'+ d["capacity:beds"]
+	                    +'<br/><strong>Personnel Count: </strong>'+ d["personnel:count"]
+	                    +'<br/><button type="button" id="button'+id+'" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-edit"></span>Edit OSM Data</button>'
 	                  
 				break;
 			case "try":
