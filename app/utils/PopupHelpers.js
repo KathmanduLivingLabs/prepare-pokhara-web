@@ -39,8 +39,7 @@ var popupHelpers = {
 	                    +'<br/><strong>Bed Capacity: </strong>'+ d["capacity:beds"]
 	                    +'<br/><strong>Personnel Count: </strong>'+ d["personnel:count"]
 	                    +'<br/><button type="button" id="button'+id+'" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-edit"></span>Edit OSM Data</button>'
-	                  
-				break;
+	            break;
 			case "try":
 				popupContent = '<div class = "container-fluid row-fluid popup" style="">'+
 	                            '<form role="form" class="form'+id+'" enctype="multipart/form-data">'
@@ -159,6 +158,7 @@ var popupHelpers = {
 	                        +'</div>';
 				break;
 			default:
+	        	popupContent = '<strong>Name: </strong>'+d.name;
 
 		}
 		return popupContent;
