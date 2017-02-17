@@ -93,6 +93,7 @@ var fetchData = {
         var myInsights = fetchInsights(params);
         return axios.all([myInsights])
             .then(function(response) {
+                console.log(response[0].data)
                 var stats = response[0].data.stats; 
                 var geojson = response[0].data.geojson;
 

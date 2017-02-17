@@ -24,6 +24,7 @@ var popupHelpers = {
 				break;
 			case "bank":
 	        	popupContent = '<strong>Name: </strong>'+d.name
+	        	break;
 
 	        case "hospitaledit":
 	        	popupContent = '<strong>Name: </strong>'+d.name
