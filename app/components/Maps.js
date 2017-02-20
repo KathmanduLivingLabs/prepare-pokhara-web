@@ -6,6 +6,8 @@ var PopupHelpers = require('../utils/PopupHelpers')
 require('../styles/contents.css')
 require('../styles/popups.css')
 
+var markerLayer;
+
 var Multi = React.createClass({
     getInitialState: function() {
         var maxWindowHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0) - 55;
@@ -36,8 +38,8 @@ var Multi = React.createClass({
         markerLayer = new L.featureGroup;
         data.features.map(function(d, i) {
             var marker = new L.marker([d.geometry.coordinates[1], d.geometry.coordinates[0]]).addTo(markerLayer)
-                .bindPopup(PopupHelpers.getPopupContent(this.props.type, d.properties.tags, i), this.state.customOptions)
-            $('body').on('click', '#button' + i, function(){this.onEditClick(d)}.bind(this));
+                .bindPopup(PopupHelpers.getPopupContent(this.props.type, d.properties.tags, d.properties.id), this.state.customOptions)
+            $('body').on('click', '#button' + d.properties.id, function(){this.onEditClick(d)}.bind(this));
         }.bind(this));
 
         markerLayer.addTo(this.map);

@@ -31,6 +31,7 @@
     "leaflet-spin": "^1.1.0",
     "lodash": "^4.17.4",
     "nouislider": "^9.2.0",
+    "osm-auth": "^1.0.1",
     "react": "*",
     "react-checkbox-group": "^3.0.1",
     "react-dom": "*",
@@ -38,11 +39,13 @@
     "react-leaflet": "^1.1.0",
     "react-loader": "^2.4.0",
     "react-loader-advanced": "^1.4.1",
+    "react-nouislider": "^1.14.2",
     "react-rangeslider": "^1.0.9",
     "react-router": "^2.0.0-rc5",
     "react-spinjs": "^3.0.0",
     "react-toggle": "^2.2.1",
-    "wnumb": "^1.1.0"
+    "wnumb": "^1.1.0",
+    "xml2js": "^0.4.17"
   },
   "repository": {
     "type": "git",
