@@ -9,11 +9,11 @@ const osmAPIServer = {
 		key: 'DE7kW4Be3wDvvRyuG4pMslzQUiBZxYKLioRvD04j'
 	},
 
-	// live: {
-	// 	url: 'http://www.openstreetmap.org',
-	// 	secret: 'uQgAwuulO4TYpi6Dz53zX3eAypxXikg6K7980E9s',
-	// 	key: 'Il7VH5O3UYeW1twJuvogfZPUjH6jYAUhjynTNfPw'
-	// }
+	live: {
+		url: 'http://www.openstreetmap.org',
+		secret: 'uQgAwuulO4TYpi6Dz53zX3eAypxXikg6K7980E9s',
+		key: 'Il7VH5O3UYeW1twJuvogfZPUjH6jYAUhjynTNfPw'
+	}
 }
 
 const currentEnvironment = osmAPIServer.dev;
@@ -66,8 +66,8 @@ module.exports = class OsmAuth {
 
 		var options = {
 			method: 'GET',
-			// path: '/api/0.6/'+type+'/'+id
-			path: '/api/0.6/node/12345'
+			path: '/api/0.6/'+type+'/'+id
+			// path: '/api/0.6/node/12345'
 		}
 
 		return new Promise((resolve, reject) => {
@@ -178,11 +178,12 @@ module.exports = class OsmAuth {
 	}
 
 
-	applyEdit(xml, cb) {
+	applyEdit(xml,type,id) {
 
 		var options = {
 			method: 'PUT',
-			path: '/api/0.6/node/12345',
+			// path: '/api/0.6/node/12345',
+			path: '/api/0.6/'+type+'/'+id,
 			content: xml,
 			options: {
 				"header": {

@@ -18,7 +18,7 @@ var EditForm = React.createClass({
 		// console.log('/////////////$$$$$$$$$$$$$$$$$$#####################**************////////////////////');
 
 		var featureData = this.props.location.state.data;
-		featureData.properties.type = 'node'; //remove this line later , for LIVE version
+		// featureData.properties.type = 'node'; //remove this line later , for LIVE version
 
 		var auth = new osmAuth();
 		auth.getFeature(featureData.properties.type,featureData.properties.id)
@@ -31,7 +31,7 @@ var EditForm = React.createClass({
 		    })
 		    .then(function(response){
 		        var xml = auth.applyChangeset(response.changeset,response.appliedChanges,featureData.properties.type);
-		        return auth.applyEdit(xml);
+		        return auth.applyEdit(xml,featureData.properties.type,featureData.properties.id);
 		    },function(err){
 		        throw err;
 		    })
