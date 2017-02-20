@@ -6,10 +6,17 @@ var EditForm = React.createClass({
 	handleEdit : function(e){
 
 		e.preventDefault();
+
 		var formElements = {};
 		for(var formfield in this.refs){
 			if(this.refs[formfield].value && this.refs[formfield].value.length){
 				formElements[formfield] = this.refs[formfield].value;	
+			}
+		}
+
+		for(var tag in this.props.location.state.data.properties.tags){
+			if(!formElements[tag]){
+				formElements[tag] = this.props.location.state.data.properties.tags[tag];
 			}
 		}
 
