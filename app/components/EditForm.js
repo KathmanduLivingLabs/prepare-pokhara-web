@@ -23,35 +23,35 @@ var EditForm = React.createClass({
 
 		console.log(formElements);
 		
-		// console.log('************* THE REAL AUTH CODE IS COMMENTED !. UNCOMMENT AFTER THIS LINE ***********');
-		// console.log('/////////////$$$$$$$$$$$$$$$$$$#####################**************////////////////////');
+		console.log('************* THE REAL AUTH CODE IS COMMENTED !. UNCOMMENT AFTER THIS LINE ***********');
+		console.log('/////////////$$$$$$$$$$$$$$$$$$#####################**************////////////////////');
 
-		// var featureData = this.props.location.state.data;
-		// // featureData.properties.type = 'node'; //remove this line later , for LIVE version
+		var featureData = this.props.location.state.data;
+		featureData.properties.type = 'node'; //remove this line later , for LIVE version
 
-		// var auth = new osmAuth();
-		// auth.getFeature(featureData.properties.type,featureData.properties.id)
-		//     .then(function(response){
-		//         response = auth.cleanseData(response,featureData.properties.type);
-		//         var appliedChanges =  auth.applyChanges(formElements,response,featureData.properties.type);
-		//         return auth.createChangeset(appliedChanges);
-		//     },function(err){
-		//         throw err;
-		//     })
-		//     .then(function(response){
-		//         var xml = auth.applyChangeset(response.changeset,response.appliedChanges,featureData.properties.type);
-		//         return auth.applyEdit(xml,featureData.properties.type,featureData.properties.id);
-		//     },function(err){
-		//         throw err;
-		//     })
-		//     .then(function(edited){
-		//         alert('Successfully edited !');
-		//     },function(err){
-		//         throw err;
-		//     })
-		//     .catch(function(err){
-		//         throw err;
-		//     })
+		var auth = new osmAuth();
+		auth.getFeature(featureData.properties.type,featureData.properties.id)
+		    .then(function(response){
+		        response = auth.cleanseData(response,featureData.properties.type);
+		        var appliedChanges =  auth.applyChanges(formElements,response,featureData.properties.type);
+		        return auth.createChangeset(appliedChanges);
+		    },function(err){
+		        throw err;
+		    })
+		    .then(function(response){
+		        var xml = auth.applyChangeset(response.changeset,response.appliedChanges,featureData.properties.type);
+		        return auth.applyEdit(xml,featureData.properties.type,featureData.properties.id);
+		    },function(err){
+		        throw err;
+		    })
+		    .then(function(edited){
+		        alert('Successfully edited !');
+		    },function(err){
+		        throw err;
+		    })
+		    .catch(function(err){
+		        throw err;
+		    })
 
 	},
 
