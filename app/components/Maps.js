@@ -5,6 +5,7 @@ var PopupHelpers = require('../utils/PopupHelpers')
 var LeafletSearch = require('leaflet-search');
 
 require('../styles/contents.css')
+require('../styles/leaflet-search.css')
 require('../styles/popups.css')
 
 var markerLayer;
@@ -22,8 +23,9 @@ var Multi = React.createClass({
     rendermap: function() {
         var map = this.map = L.map(ReactDOM.findDOMNode(this)).setView([28.207, 83.992], 12);
         L.tileLayer('https://api.mapbox.com/styles/v1/arkoblog/ciy2j6jja00g52sqdi7u4114x/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYXJrb2Jsb2ciLCJhIjoiY2l5MmczdzJyMDAxODJxcDY5NHMyeHpkMyJ9.la6WiYXrUzF1Iy4aST9tnA', {
-            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors <br> Website developed by <a target = "_blank" href="http://kathmandulivinglabs.org">Kathmandu Living Labs</a>'
         }).addTo(map);
+        L.control.scale().addTo(map)
 
     },
 
