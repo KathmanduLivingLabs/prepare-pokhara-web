@@ -136,3 +136,10 @@ a:focus,
     outline: none;
     outline-offset: none;
 }
+
+
+.search-input{
+    display: block;
+    width: 250px;
+    height: 25px;
+}

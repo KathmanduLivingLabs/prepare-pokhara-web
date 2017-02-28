@@ -31,15 +31,27 @@ var popupHelpers = {
 	                    +'<br/><strong>Name (Nepali):  </strong>'+d["name:ne"]
 	                    +'<br/><strong>ICU: </strong>'+d["facility:icu"]
 	                    +'<br/><strong>Ventilator: </strong>'+d["facility:ventilator"] 
-	                    +'<br/><strong>Emergency Services: </strong>'+d["emergency_service"] 
-	                    +'<br/><strong>Operation Theatre: </strong>'+d["facility:operating_theatre"]
+	                    +'<br/><strong>Emergency Services: </strong>'+(d["emergency_service"] || d["emergency:services"] )
+	                    +'<br/><strong>Operation Theatre: </strong>'+ (d["facility:operating_theatre"] || d["facility:operation_theatre"])
 	                    +'<br/><strong>NICU: </strong>'+d["facility:nicu"]
 	                    +'<br/><strong>Emergency: </strong>'+d["emergency"]
 	                    +'<br/><strong>X-Ray: </strong>'+d["facility:x-ray"]
-	                    +'<br/><strong>Bed Capacity: </strong>'+ d["capacity:beds"]
+	                    +'<br/><strong>Bed Capacity: </strong>'+ (d["capacity:beds"] || d["capacity:bed"] )
 	                    +'<br/><strong>Personnel Count: </strong>'+ d["personnel:count"]
 	                    +'<br/><button type="button" id="button'+id+'" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-edit"></span>Edit OSM Data</button>'
 	            break;
+    		case "schooledit":
+    			popupContent = '<strong>Name: </strong>'+ d.name
+		                        +'<br/><strong>Name (Nepali):  </strong>'+d["name:ne"]
+		                        +'<br/><strong>Operator Type: </strong>'+(d["operator:type"] || d["operator"])
+		                        +'<br/><strong>Total Students: </strong>'+d["student:count"]
+		                        +'<br/><strong>Total Personnel: </strong>'+d["personnel:count"]
+		                        +'<br/><button type="button" id="button'+id+'" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-edit"></span>Edit OSM Data</button>'
+    			break;
+			case "bankedit":
+	        	popupContent = '<strong>Name: </strong>'+d.name
+	        					+'<br/><button type="button" id="button'+id+'" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-edit"></span>Edit OSM Data</button>'
+	        	break;
 			case "try":
 				popupContent = '<div class = "container-fluid row-fluid popup" style="">'+
 	                            '<form role="form" class="form'+id+'" enctype="multipart/form-data">'

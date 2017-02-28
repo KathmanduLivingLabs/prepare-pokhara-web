@@ -2,9 +2,12 @@ var React = require('react');
 var ReactDOM = require('react-dom')
 var L = require('leaflet')
 var PopupHelpers = require('../utils/PopupHelpers')
+var LeafletSearch = require('leaflet-search');
 
 require('../styles/contents.css')
 require('../styles/popups.css')
+
+var markerLayer;
 
 var Multi = React.createClass({
     getInitialState: function() {
@@ -24,6 +27,28 @@ var Multi = React.createClass({
 
     },
 
+    renderSearchBar : function(markerLayer){
+
+        if(!this.searchControl){
+            this.searchControl = new L.Control.Search({
+                layer: markerLayer,
+                position:'topright',
+                marker: L.circleMarker([0,0],{radius:30}),
+                zoom: 17,
+                initial: false
+            });
+            
+            this.map.addControl(this.searchControl);
+        }else{
+            this.searchControl._layer = markerLayer;
+        }
+
+    },
+
+    removeSearchBar : function(){
+        this.map.removeControl(this.searchControl);
+    },
+
     onEditClick: function(d) {
         this.props.handler(d);
     },
@@ -35,12 +60,14 @@ var Multi = React.createClass({
     addMarkers: function(data) {
         markerLayer = new L.featureGroup;
         data.features.map(function(d, i) {
-            var marker = new L.marker([d.geometry.coordinates[1], d.geometry.coordinates[0]]).addTo(markerLayer)
-                .bindPopup(PopupHelpers.getPopupContent(this.props.type, d.properties.tags, i), this.state.customOptions)
-            $('body').on('click', '#button' + i, function(){this.onEditClick(d)}.bind(this));
+            var marker = new L.marker([d.geometry.coordinates[1], d.geometry.coordinates[0]],{title : d.properties.tags.name || d.properties.tags.amenity }).addTo(markerLayer)
+                .bindPopup(PopupHelpers.getPopupContent(this.props.type, d.properties.tags, d.properties.id), this.state.customOptions)
+            $('body').on('click', '#button' + d.properties.id, function(){this.onEditClick(d)}.bind(this));
         }.bind(this));
 
         markerLayer.addTo(this.map);
+
+        this.renderSearchBar(markerLayer);
 
     },
 

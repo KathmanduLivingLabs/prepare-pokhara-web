@@ -126,7 +126,7 @@ var Hospitals = React.createClass({
 				<div className="row-fluid">
 					<div className="col-md-8 col-xs-8 col-sm-8 no-padding ">
 								<Updater config={this.state.updaterConfig}>
-								<Maps.Multi data={this.state.insightValues.geojson} type="hospital" handler={this.onEdit}/>
+								<Maps.Multi data={this.state.insightValues.geojson} type="hospitaledit" handler={this.onEdit}/>
 								</Updater>
 					</div>
 

@@ -95,7 +95,15 @@ var Schools = React.createClass({
             updaterConfig: { opacity: 0.6, allowPointer: "none" }
         }, this.onParameterChange(newParameters))
     },
-    onEdit: function() {
+    onEdit: function(data) {
+        this.context.router.push({
+            pathname:'/edit',
+            state: {
+                data: data,
+                parentLocation: "schools",
+                id: data.id
+            }
+        })
 
     },
     updateDimensions: function() {
@@ -116,7 +124,7 @@ var Schools = React.createClass({
 					<div className="row-fluid">
 						<div className="col-md-8 col-xs-8 col-sm-8 no-padding ">
 							<Updater config={this.state.updaterConfig}>
-							<Maps.Multi data={this.state.insightValues.geojson} type="school" handler={this.onEdit}/>
+							<Maps.Multi data={this.state.insightValues.geojson} type="schooledit" handler={this.onEdit}/>
 							</Updater>
 						</div>
 
